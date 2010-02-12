@@ -282,7 +282,7 @@ module Paperclip
       return if @queued_for_write[:original].nil?
       
       # TODO find out why this doesn't work in rails3
-      #return if fire_events(:before)
+      return if fire_events(:before)
       post_process_styles
       return if fire_events(:after)
     end
@@ -293,7 +293,7 @@ module Paperclip
     end
 
     def callback which #:nodoc:
-      instance.run_callbacks(which, @queued_for_write){|result, obj| result == false }
+      instance.run_callbacks(which, @queued_for_write)
     end
 
     def post_process_styles #:nodoc:
