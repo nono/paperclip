@@ -350,6 +350,10 @@ module Paperclip
 
 end
 
+if defined?(::Rails::Railtie)
+  require 'paperclip/railtie'
+end
+
 # Set it all up.
 if Object.const_defined?("ActiveRecord")
   ActiveRecord::Base.send(:include, Paperclip)
